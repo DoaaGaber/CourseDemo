@@ -1,0 +1,35 @@
+<p>Create Your Order</p>
+<label >Category ID :</label>
+<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name="cat" 
+ [(ngModel)]="categoryIDSelected" >
+    <option value="0" selected >All</option> 
+    <option selected *ngFor="let cat of categortList"  [value]="cat.id">{{cat.name}}</option>
+   
+  </select>
+  <hr>
+
+  <app-product-list [sendCategoryID]="categoryIDSelected" (itembought)="showCart($event)"></app-product-list>
+  <hr>
+  <hr>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">COunt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartList ; let i=index ">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.pName}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.count}}</td>
+      </tr>
+     
+    </tbody>
+  </table>
+  <hr>
+  <h4>total Price :{{totalPrice}}</h4>
+  

@@ -1,0 +1,47 @@
+
+<a class="btn btn-success" m-3 role="button" [routerLink]="['/product/Add']">New Product</a>
+  
+<hr>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Count</th>
+        <th scope="col">Details</th>
+        <th scope="col">Add To Card</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let item of productlistCat ; let i=index" [style.background-color]="item.quantity==0?'red':'gray'">
+        <!-- safe navgation operator-->
+
+        <th scope="row">{{i+1}}</th>
+        <td>{{item?.name}}</td>
+        <td><img src="{{item.imgURl}}" /></td>
+        <td>
+            <ng-container  [ngSwitch]="item.quantity" >
+            <div *ngSwitchCase="0">Out Of stock</div>
+            <div *ngSwitchCase="1">at least One </div>
+            <div *ngSwitchCase="2">at least Two </div>
+            <div *ngSwitchDefault>{{item.quantity}}</div>
+            </ng-container>
+
+         <!-- <div *ngIf="item.quantity!=0 ;else outOfStock">{{item.quantity}}</div>  
+          <ng-template #outOfStock >Out Of stock</ng-template>-->
+        </td>
+        <td>{{item.price | currency}} </td>
+        <td><input [disabled]="item.quantity==0" #itemcount  type="number " class="form-control"  value="1"  /></td>
+      <!--   <td><button type="button" class="btn btn.secondary" (click)="openDetails(item.id)">Details</button></td> -->
+        <td><a  class="btn btn-info"  [routerLink]="['/details',item.id]"  role="button">Details</a></td>
+      <td><button type="button" class="btn btn.secondary" (click)="buy(item,itemcount.value)">Add To Card</button></td>
+      </tr>
+     
+    </tbody>
+  </table>
+  
+ 
+ 

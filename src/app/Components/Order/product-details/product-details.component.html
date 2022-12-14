@@ -1,0 +1,11 @@
+
+<div class="card" style="width: 25rem;">
+    <img class="card-img-top" [src]="currentPrd?.imgURl" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{currentPrd?.name}}</h5>
+      <p class="card-text">Price:{{currentPrd?.price}}</p>
+      <button  type="button" class="btn btn-success" (click)="goPrevious()">Previous</button>
+      <button  type="button" class="btn btn-warning" (click)="goBack()"> BACK</button>
+      <button  type="button" class="btn btn-success" (click)="goNext()"> Next</button>
+    </div>
+  </div>
